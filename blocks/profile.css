@@ -1,0 +1,79 @@
+  .profile {
+    display: flex;
+    padding: 34px 0 20px;
+    border-bottom: 1px rgba(33, 33, 33, .4) solid;
+    font-family: Poppins;
+
+
+  }
+
+  .profile__avatar {
+    margin-right: 20px;
+    height: 190px;
+    width: 190px;
+    border-radius: 8px;
+  }
+
+  .profile__column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile__name {
+    margin: 0 0 12px;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0%;
+
+  }
+
+  .profile__description {
+    margin: 0;
+    width: 97px;
+    height: 16px;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    opacity: 70%;
+  }
+
+  .profile__edit-btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: auto;
+    height: 16px;
+    width: 107.34px;
+    border: none;
+    padding: 20px 0;
+    background-color: #FCF5E5;
+    color: #212121;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    opacity: 70%;
+    cursor: pointer;
+  }
+
+  .profile__add-btn{
+    display: flex;
+    margin-left: auto;
+    width: 149px;
+    height: 52px;
+    border: 2px;
+    border-radius: 8px;
+    padding: 18px 32px 18px;
+    background-color: #212121;
+    color: #FCF5E5;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    justify-content: space-between;
+    cursor: pointer;
+  }
