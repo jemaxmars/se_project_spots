@@ -3,9 +3,8 @@
     padding: 34px 0 20px;
     border-bottom: 1px rgba(33, 33, 33, .4) solid;
     font-family: Poppins;
-
-
   }
+
 
   .profile__avatar {
     margin-right: 20px;
@@ -17,6 +16,7 @@
   .profile__column {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .profile__name {
@@ -60,20 +60,31 @@
     cursor: pointer;
   }
 
-  .profile__add-btn{
+  .profile__edit-btn:hover {
+    opacity: 100%;
+  }
+
+  .profile__add-btn {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     margin-left: auto;
+    margin-top: auto;
     width: 149px;
     height: 52px;
     border: 2px;
     border-radius: 8px;
-    padding: 18px 32px 18px;
     background-color: #212121;
     color: #FCF5E5;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 16px;
-    justify-content: space-between;
     cursor: pointer;
+  }
+
+  .profile__add-btn:hover {
+    background-color: #212121;
+    opacity: 80%;
   }
