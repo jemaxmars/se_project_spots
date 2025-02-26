@@ -13,5 +13,6 @@ program's 3rd sprint. It is the first responsive site that I created, for both d
   
 ## Deployment
 This webpage is deployed to Github Pages.
+https://github.com/jemaxmars/se_project_spots
   
 
