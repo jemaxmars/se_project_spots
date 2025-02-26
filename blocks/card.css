@@ -1,11 +1,6 @@
-.card {
-  max-width: 413px;
-  row-gap: 40px;
-}
-
 .card__image {
   height: 413px;
-  width: 413px;
+  width: 100%;
   border-radius: 8px;
   object-fit: cover;
   display: block;
@@ -13,7 +8,9 @@
   .card__title {
   font-weight: 500;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 1.2;
+  margin: 0;
+  padding: 12px;
   }
 
 .card__content {
@@ -35,4 +32,18 @@
 .card__like-button:hover {
   opacity: 100%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 627px) {
+  .card__image {
+    height: 288px;
+  }
+
+  .card__title {
+    color: transparent;
+  }
+
+  .card__title::before {
+    content: "Val Thorens";
+    color: #212121;
 }
