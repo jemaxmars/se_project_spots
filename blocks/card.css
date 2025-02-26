@@ -10,8 +10,13 @@
   font-size: 20px;
   line-height: 1.2;
   margin: 0;
-  padding: 12px;
-  }
+  padding: 12px 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 413px;
+}
+
 
 .card__content {
   display: flex;
@@ -46,4 +51,5 @@
   .card__title::before {
     content: "Val Thorens";
     color: #212121;
+}
 }

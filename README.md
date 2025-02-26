@@ -1,21 +1,17 @@
-# Project 3: Spots
+# Project for Sprint 3: "Spots"
+This project is an image sharing site.
 
-### Overview  
+## Description
+This is a webpage that I created for Triple Ten's software engineering program. It is for the 
+program's 3rd sprint. It is the first responsive site that I created, for both desktop and mobile viewing. I used Figma to implement a cohesive "game plan" for how I was going to design the layout of the webpage. I used VS Code to create and edit the necessary HTML & CSS files for this project.
 
-* Intro  
-* Figma  
-* Images  
+## Tech Stack
+* HTML
+* CSS
+* FIGMA
+* RESPONSIVE DESIGN  
   
-**Intro**
+## Deployment
+This webpage is deployed to Github Pages.
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+
