@@ -6,15 +6,14 @@
   display: block;
 }
   .card__title {
+  color: #212121;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.2;
   margin: 0;
-  padding: 12px 0 0;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
-  max-width: 413px;
+  max-width: 350px;
 }
 
 
@@ -22,9 +21,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 12px 0 0;
 }
 
 .card__like-button {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url(../images/like-icon-hover.svg);
   width: 23px;
   height: 20px;
@@ -45,11 +48,15 @@
   }
 
   .card__title {
-    color: transparent;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 16px;
+    max-width: 250px;
   }
 
-  .card__title::before {
-    content: "Val Thorens";
-    color: #212121;
+.card__like-button {
+  width: 20px;
+  height: 18px;
 }
 }

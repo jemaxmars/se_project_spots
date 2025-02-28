@@ -1,3 +1,9 @@
 .content {
   padding: 0 20px;
 }
+
+@media screen and (max-width:320px) {
+  .profile {
+    padding: 0 16px;
+  }
+}
