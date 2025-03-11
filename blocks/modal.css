@@ -1,0 +1,86 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.modal__opened {
+  visibility: visible;
+}
+
+.modal__container {
+  background: #fff;
+  max-width: 730px;
+  width: 100%;
+  padding: 32px 50px;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.modal__close-button {
+  position: absolute;
+  opacity: 40%;
+  top: 32px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: #212121;
+  cursor: pointer;
+}
+
+.modal__close-button:hover {
+  opacity: 100%;
+}
+
+.modal__title {
+  margin: 0 0 32px;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: 0%;
+
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+  color: rgba(33, 33, 33, 0.7);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.modal__submit-button {
+  width: 156px;
+  padding: 18px 0;
+  background-color: rgba(33, 33, 33, 1);
+  border-radius: 8px;
+  color: #fff;
+  gap: 8px;
+}
+
+.modal__input {
+  padding: 16px 12px;
+  border-radius: 8px;
+  border: solid rgba(33, 33, 33, 0.4) 1px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.modal__input:hover {
+  cursor: pointer;
+}
