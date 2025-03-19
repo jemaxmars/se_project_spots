@@ -64,11 +64,16 @@
 
 .modal__submit-button {
   width: 156px;
+  border: none;
   padding: 18px 0;
   background-color: rgba(33, 33, 33, 1);
   border-radius: 8px;
   color: #fff;
   gap: 8px;
+}
+
+.modal__submit-button:hover {
+  background-color: rgba(33, 33, 33, 0.8);
 }
 
 .modal__input {
@@ -78,15 +83,17 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
-  color: rgba(33, 33, 33, 0.3);
+  color: rgba(33, 33, 33, 1);
 }
 
 .modal__input:hover {
   cursor: pointer;
-  color: rgba(33, 33, 33, 1);
+  border: solid rgba(33, 33, 33, 1) 1px;
 }
 
-
+.modal__input::placeholder {
+  color: rgba(33, 33, 33, 0.3);
+}
 
 @media screen and (max-width: 627px) {
   .modal {
