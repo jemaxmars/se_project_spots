@@ -49,8 +49,15 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
+  const cardLikeBtnEl = cardElement.querySelector(".card__like-button");
+  cardLikeBtnEl.addEventListener("click", () => {
+    cardLikeBtnEl.classList.toggle("card__like-button_active");
+  });
+
   return cardElement;
 }
+
+
 
 function openModal(modal) {
   modal.classList.add("modal_opened");

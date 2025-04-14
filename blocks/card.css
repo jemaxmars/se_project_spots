@@ -43,6 +43,17 @@
   cursor: pointer;
 }
 
+.card__like-button_active {
+  background-image: url(../images/heartlikeiconactive.svg);
+  opacity: 1;
+}
+
+.card__like-button_active:hover {
+  opacity: 0.4;
+}
+
+
+
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
