@@ -33,7 +33,7 @@
       <ul class="cards__list">
        <template id="card-template">
         <li class="card">
-          <img src="" alt="" class="card__image">
+          <img src="#" alt="" class="card__image">
           <div class="card__content">
             <h2 class="card__title"></h2>
             <button type="button" class="card__like-button"></button>
@@ -63,6 +63,25 @@
             <input id="profile-description-input" type="text" class="modal__input" placeholder="Describe yourself"/>
           </label>
           <button type="submit" class="modal__submit-button">Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close-button">
+          <img src="./images/x-icon-hover.svg" alt="X icon">
+        </button>
+        <h2 class="modal__title">New Place</h2>
+        <form name="add-card" class="modal__form" id="add-card-form">
+          <label for="card-title-input" class="modal__label">
+            Title
+            <input id="card-title-input" type="text" class="modal__input" placeholder="Title" required />
+          </label>
+          <label for="card-url-input" class="modal__label">
+            Image URL
+            <input id="card-url-input" type="url" class="modal__input" placeholder="Image URL" required />
+          </label>
+          <button type="submit" class="modal__submit-button">Create</button>
         </form>
       </div>
     </div>
