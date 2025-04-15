@@ -82,7 +82,7 @@
 .modal__close-button_type_preview {
   top: 0;
   right: -52.5px;
-  background: url(../images/preview\ close\ icon.svg);
+  /* background: url(../images/preview\ close\ icon.svg); */
   opacity: 1;
   cursor: pointer;
   }
