@@ -83,14 +83,10 @@ function getCardElement(data) {
     previewImageEl.alt = data.name;
     previewCaptionEl.textContent = data.name;
     openModal(previewModal);
-
-
   });
-
 
   return cardElement;
 }
-
 
 
 function openModal(modal) {
