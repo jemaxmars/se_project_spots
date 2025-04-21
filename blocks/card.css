@@ -9,9 +9,6 @@
   width: 100%;
   border-radius: 8px;
   object-fit: cover;
-  display: block;
-  max-width: 80vw;
-  max-height: 80vw;
 }
   .card__title {
   color: #212121;
@@ -92,5 +89,10 @@
 .card__like-button {
   width: 20px;
   height: 18px;
+  }
+
 }
+
+@media screen and (max-width: 480px) {
+
 }

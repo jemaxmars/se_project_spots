@@ -37,8 +37,8 @@
 }
 
 .modal__image {
-  max-width: 80vw;
-  max-height: 80vw;
+  max-width: 80vh;
+  max-height: 80vh;
   width: 100%;
   object-fit: contain;
   display: block;
@@ -82,7 +82,7 @@
 .modal__close-button_type_preview {
   top: 0;
   right: -52.5px;
-  /* background: url(../images/preview\ close\ icon.svg); */
+  padding: 0;
   opacity: 1;
   cursor: pointer;
   }
@@ -146,12 +146,10 @@
 .modal__close-button_type_preview {
   top: -48px;
   right: 0;
-  }
 
-  .modal__image {
-    max-width: unset;
-  }
+  padding: 0;
 }
+
 
 @media screen and (max-width: 480px) {
   .modal {
@@ -159,6 +157,12 @@
   }
   .modal__container {
     padding: 12px;
+  }
+
+  .modal__image {
+    max-height: none;
+    max-width: none;
+    width: 100%;
   }
 
   .modal__title {
@@ -193,4 +197,5 @@
   .modal__caption {
     font-size: 16px;
   }
+
 }
