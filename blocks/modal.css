@@ -137,6 +137,10 @@
   border: solid rgba(33, 33, 33, 1) 1px;
 }
 
+.modal__input_type_error {
+  border: 1px, solid, rgba(255, 0, 0, 0.6);
+}
+
 .modal__input::placeholder {
   color: rgba(33, 33, 33, 0.3);
 }
