@@ -141,13 +141,21 @@
   color: rgba(33, 33, 33, 0.3);
 }
 
+.modal__error {
+  display: block;
+  color: rgba(255, 0, 0, 0.7);
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+}
+
 
 @media screen and (max-width: 627px) {
 .modal__close-button_type_preview {
   top: -48px;
   right: 0;
-
   padding: 0;
+}
 }
 
 
@@ -197,5 +205,4 @@
   .modal__caption {
     font-size: 16px;
   }
-
 }
