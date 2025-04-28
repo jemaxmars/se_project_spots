@@ -53,7 +53,7 @@
           <img src="./images/x-icon-hover.svg" alt="X icon">
           </button>
         <h2 class="modal__title">Edit Profile</h2>
-        <form name="edit.profile" class="modal__form">
+        <form class="modal__form" id="edit.profile" novalidate>
           <label for="profile-name-input" class="modal__label">
             Name
             <input id="profile-name-input" type="text" class="modal__input"
@@ -76,7 +76,7 @@
           <img src="./images/x-icon-hover.svg" alt="X icon">
           </button>
         <h2 class="modal__title">New Post</h2>
-        <form name="add-card" class="modal__form" id="add-card-form">
+        <form class="modal__form" id="add-card-form">
           <label for="card-url-input" class="modal__label">
             Image Link
             <input id="card-url-input" type="url" class="modal__input"
@@ -86,7 +86,7 @@
           <label for="card-title-input" class="modal__label">
             Caption
             <input id="card-title-input" type="text" class="modal__input"
-            placeholder="Title" minlength="2" maxlength="30" />
+            placeholder="Title" minlength="2" maxlength="30" required/>
             <span id="card-title-input-error" class="modal__error"></span>
           </label>
           <button type="submit" class="modal__submit-button">Save</button>

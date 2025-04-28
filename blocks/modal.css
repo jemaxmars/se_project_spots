@@ -118,8 +118,9 @@
   gap: 8px;
 }
 
-.modal__submit-button:hover {
-  background-color: rgba(33, 33, 33, 0.8);
+.modal__submit-button-disabled {
+  opacity: 50%;
+  cursor: none;
 }
 
 .modal__input {
