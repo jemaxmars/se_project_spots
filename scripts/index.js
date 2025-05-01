@@ -79,7 +79,6 @@ function getCardElement(data) {
   });
 
   cardImageEl.addEventListener("click", () => {
-    console.log('Card clicked:', data.name, data.link);
     previewImageEl.src = data.link;
     previewImageEl.alt = data.name;
     previewCaptionEl.textContent = data.name;
@@ -136,7 +135,7 @@ addCardFormEl.addEventListener("submit", (e) => {
     name: titleInput.value,
     link: urlInput.value
   });
-  console.log('New card created:', newCard);
+  
 
   cardsListEl.prepend(newCard);
   closeModal(addCardModal);
