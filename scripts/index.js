@@ -31,12 +31,12 @@ const profileDescription = document.querySelector(".profile__description");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardFormEl = document.querySelector("#add-card-form");
 const profileAddButton = document.querySelector(".profile__add-btn");
+const addCardSubmitButton = addCardModal.querySelector(".modal__submit-button");
 
 const cardsListEl = document.querySelector(".cards__list");
 
 const editModal = document.querySelector("#edit-profile-modal");
 const editFormElement = editModal.querySelector(".modal__form");
-const modalSubmitButton = editModal.querySelector(".modal__submit-button");
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector("#profile-description-input")
@@ -135,12 +135,12 @@ addCardFormEl.addEventListener("submit", (e) => {
     name: titleInput.value,
     link: urlInput.value
   });
-  
+
 
   cardsListEl.prepend(newCard);
   closeModal(addCardModal);
   addCardFormEl.reset();
-  disableButton(modalSubmitButton, settings);
+  disableButton(addCardSubmitButton, settings);
 });
 
 initialCards.forEach(function (item) {
