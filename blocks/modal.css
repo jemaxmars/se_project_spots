@@ -11,6 +11,7 @@
   justify-content: center;
   visibility: hidden;
   padding: 0 20 px;
+  transition: visibility 0.3s, opacity 0.3s ease-in;
 }
 
 .modal_type_preview {
@@ -19,6 +20,7 @@
 
 .modal_opened {
   visibility: visible;
+  transition: visibility 0.3s, opacity 0.3s ease-in;
 }
 
 .modal__container {
@@ -72,7 +74,6 @@
   background-image: url(../images/x-icon-hover.svg);
   background: transparent;
   border: none;
-  color: #212121;
   cursor: pointer;
 }
 
@@ -84,11 +85,12 @@
   top: 0;
   right: -52.5px;
   padding: 0;
-  opacity: 1;
+  opacity: 40%;
   cursor: pointer;
+  background-image: url(../images/x-icon-hover.svg);
   }
 .modal__close-button_type_preview:hover {
-  opacity: 40%;
+  opacity: 100%;
   }
 
 .modal__title {

@@ -88,6 +88,30 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function handleOverlayClick(evt) {
+  if (evt.target === evt.currentTarget) {
+      closeModal(evt.target);
+  }
+}
+
+editModal.addEventListener("click", handleOverlayClick);
+addCardModal.addEventListener("click", handleOverlayClick);
+previewModal.addEventListener("click", handleOverlayClick);
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+      // Check each modal and close it if it's open
+      if (editModal.classList.contains('modal_opened')) {
+          closeModal(editModal);
+      }
+      if (addCardModal.classList.contains('modal_opened')) {
+          closeModal(addCardModal);
+      }
+      if (previewModal.classList.contains('modal_opened')) {
+          closeModal(previewModal);
+      }
+  }
+});
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
