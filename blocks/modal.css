@@ -21,7 +21,6 @@
 
 .modal_opened {
   visibility: visible;
-  /* transition: visibility 0.3s, opacity 0.3s ease-in; */
   opacity: 1;
 }
 
@@ -41,8 +40,8 @@
 }
 
 .modal__image {
-  max-width: 80vh;
-  max-height: 80vh;
+  max-width: 90vh;
+  max-height: 90vh;
   width: 100%;
   object-fit: contain;
   display: block;
@@ -84,13 +83,15 @@
 }
 
 .modal__close-button_type_preview {
-  top: 0;
-  right: -52.5px;
+  top: 5px;
+  right: -47px;
   padding: 0;
   opacity: 100%;
   cursor: pointer;
-  background-image: url(../images/modalclose-x-icon.svg)
+  background-image: url(../images/modalclose-x-icon.svg);
   }
+
+
 .modal__close-button_type_preview:hover {
   opacity: 40%;
   }
@@ -166,7 +167,7 @@
 
 @media screen and (max-width: 627px) {
 .modal__close-button_type_preview {
-  top: -48px;
+  top: 10px;
   right: 0;
   padding: 0;
 }
