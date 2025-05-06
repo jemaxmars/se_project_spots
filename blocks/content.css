@@ -1,7 +1,8 @@
 
 .content {
-  margin-left: 80px;
-  margin-right: 80px;
+  /* margin-left: 80px;
+  margin-right: 80px; */
+  padding: 0 60px
 }
 
 @media screen and (max-width:320px) {
