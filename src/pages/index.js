@@ -1,3 +1,24 @@
+import "./index.css"
+import { enableValidation, validationConfig, resetValidation } from "../scripts/validation.js";
+import logoImage from "../images/logo.svg";
+const logoElement = document.querySelector(".header__logo");
+logoElement.src = logoImage;
+import avatarImage from "../images/bessie_avatar.jpg"
+const avatarElement = document.querySelector(".profile__avatar");
+avatarElement.src = avatarImage;
+import editImage from "../images/pencil-icon.svg";
+const editElement = document.querySelector(".profile__icon");
+editElement.src = editImage;
+import addImage from "../images/plus-sign.svg";
+const addElement = document.querySelector(".add__icon");
+addElement.src = addImage;
+import closeImage from "../images/x-icon-hover.svg";
+const closeElement = document.querySelector(".edit__profile-x-icon");
+closeElement.src = closeImage;
+import xImage from "../images/x-icon-hover.svg";
+const xElement = document.querySelector(".new__post-x-icon");
+xElement.src = xImage;
+
 const initialCards = [
   {
     name: "Golden Gate Bridge", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
@@ -124,7 +145,7 @@ function closeModal(modal) {
 function openEditProfileModal() {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
-  resetValidation(editFormElement, [editModalNameInput, editModalDescriptionInput], settings)
+  resetValidation(editFormElement, [editModalNameInput, editModalDescriptionInput], validationConfig)
   openModal(editModal);
 }
 
@@ -164,7 +185,7 @@ addCardFormEl.addEventListener("submit", (e) => {
   cardsListEl.prepend(newCard);
   closeModal(addCardModal);
   addCardFormEl.reset();
-  disableButton(addCardSubmitButton, settings);
+  disableButton(addCardSubmitButton, validationConfig);
 });
 
 initialCards.forEach(function (item) {
@@ -172,3 +193,4 @@ initialCards.forEach(function (item) {
   cardsList.append(cardElement);
 });
 
+enableValidation(validationConfig);

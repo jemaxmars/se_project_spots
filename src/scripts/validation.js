@@ -1,12 +1,11 @@
-const settings = {
+export const validationConfig = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-button",
   inactiveButtonClass: "modal__submit-button--disabled",
   inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error"
-}
-
+  errorClass: "modal__error",
+};
 
 const showInputError = (formEl, inputEl, errorMsg, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
@@ -21,7 +20,6 @@ const hideInputError = (formEl, inputEl, config) => {
 };
 
 const checkInputValidity = (formEl, inputEl, config) => {
-
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, inputEl.validationMessage, config);
   } else {
@@ -41,7 +39,7 @@ const toggleButtonState = (inputList, buttonEl, config) => {
   } else {
     buttonEl.classList.remove(config.inactiveButtonClass);
     buttonEl.disabled = false;
-  };
+  }
 };
 
 const disableButton = (buttonEl, config) => {
@@ -51,12 +49,11 @@ const disableButton = (buttonEl, config) => {
 
 const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((input) => {
-   hideInputError(formEl, input, config)
-  })
+    hideInputError(formEl, input, config);
+  });
   const buttonEl = formEl.querySelector(config.submitButtonSelector);
   disableButton(buttonEl, config);
-  };
-
+};
 
 const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
@@ -72,13 +69,19 @@ const setEventListeners = (formEl, config) => {
   });
 };
 
-const enableValidation = (config) => {
+export const enableValidation = (config) => {
   console.log(config.formSelector);
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formEl) => {
     setEventListeners(formEl, config);
-  })
+  });
 };
 
-enableValidation(settings);
-
+export {
+  showInputError,
+  hideInputError,
+  checkInputValidity,
+  hasInvalidInput,
+  toggleButtonState,
+  resetValidation,
+};
