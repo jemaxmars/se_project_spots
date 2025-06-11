@@ -58,15 +58,14 @@ const api = new Api({
 });
 
 api
-  .getInitialCards()
-  .then((cards) => {
+  .getAppInfo()
+  .then(([cards]) => {
     console.log(cards);
-    cards.forEach(function (item) {
+    cards.forEach((item) => {
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
   })
-
   .catch(console.error);
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
