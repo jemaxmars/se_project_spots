@@ -59,7 +59,7 @@ const api = new Api({
 
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([cards, userInfo]) => {
     console.log(cards);
     cards.forEach((item) => {
       const cardElement = getCardElement(item);
@@ -67,6 +67,7 @@ api
     });
   })
   .catch(console.error);
+
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
