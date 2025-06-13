@@ -65,6 +65,9 @@ api
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
+    profileName.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+    avatarElement.src = userInfo.avatar;
   })
   .catch(console.error);
 
@@ -146,7 +149,6 @@ previewModal.addEventListener("click", handleOverlayClick);
 
 document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
-    // Check each modal and close it if it's open
     if (editModal.classList.contains("modal_opened")) {
       closeModal(editModal);
     }
