@@ -194,11 +194,27 @@ addCardFormEl.addEventListener("submit", (e) => {
   disableButton(addCardSubmitButton, validationConfig);
 });
 
+function handleAvatarSubmit(e) {
+  e.preventDefault();
+  const newAvatarUrl = avatarInput.value;
+
+  api
+    .editProfileAvatar({ avatar: newAvatarUrl })
+    .then((data) => {
+      avatarElement.src = data.avatar;
+      closeModal(editAvatarModal);
+      avatarForm.reset();
+    })
+    .catch(console.error);
+}
+
 // Edit Avatar
 profileAvatarBtn.addEventListener("click", () => openModal(editAvatarModal));
 avatarModalCloseBtn.addEventListener("click", () =>
   closeModal(editAvatarModal)
 );
+
+avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 // Preview Modal
 previewModalCloseBtn.addEventListener("click", () => closeModal(previewModal));
