@@ -82,6 +82,18 @@
   cursor: pointer;
 }
 
+.modal__close-button-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  right: -42px;
+  bottom: 100px;
+  top: -3px;
+  opacity: 100%;
+  min-width: 23px;
+  max-height: 23px;
+}
+
 .modal__close-button:hover {
   opacity: 100%;
 }
