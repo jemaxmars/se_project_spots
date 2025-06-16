@@ -15,6 +15,7 @@ import editImage from "../images/pencil-icon.svg";
 import addImage from "../images/plus-sign.svg";
 import closeImage from "../images/x-icon-hover.svg";
 import xImage from "../images/x-icon-hover.svg";
+import deleteCloseImage from "../images/delete-modal-x-icon.svg";
 
 // ===================== API INITIALIZATION =====================
 const api = new Api({
@@ -34,6 +35,8 @@ document.querySelector(".add__icon").src = addImage;
 document.querySelector(".edit__profile-x-icon").src = closeImage;
 document.querySelector(".new__post-x-icon").src = xImage;
 document.querySelector(".edit__avatar-x-icon").src = closeImage;
+document.querySelector(".modal__delete-x-icon").src = deleteCloseImage;
+console.log("Delete close image:", deleteCloseImage);
 
 // ===================== PROFILE ELEMENTS =====================
 const profileEditButton = document.querySelector(".profile__edit-btn");

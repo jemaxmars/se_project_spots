@@ -34,9 +34,14 @@
   border-radius: 8px;
 }
 
+.modal_container-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .modal__image-container {
   position: relative;
-
 }
 
 .modal__image {
@@ -46,7 +51,6 @@
   object-fit: contain;
   display: block;
   border-radius: 8px;
-
 }
 
 .modal__caption {
@@ -89,12 +93,11 @@
   opacity: 100%;
   cursor: pointer;
   background-image: url(../images/modalclose-x-icon.svg);
-  }
-
+}
 
 .modal__close-button_type_preview:hover {
   opacity: 40%;
-  }
+}
 
 .modal__title {
   margin: 0 0 32px;
@@ -102,6 +105,15 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 1;
+}
+
+.modal_title-delete {
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
 }
 
 .modal__label {
@@ -131,6 +143,61 @@
 .modal__submit-button--disabled {
   opacity: 50%;
   cursor: none;
+}
+
+.modal_delete {
+  background-color: rgba(255, 101, 101, 1);
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(33, 33, 33, 1);
+  padding: 16px 8px 16px 8px;
+  margin-right: 20px;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+  text-align: center;
+}
+
+.modal_cancel {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(33, 33, 33, 1);
+  border: 1px solid rgba(33, 33, 33, 1);
+  box-sizing: 1px;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  padding: 16px 8px 16px 8px;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  text-align: center;
+}
+
+.modal_delete:hover {
+  background-color: rgba(255, 51, 51, 1);
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(33, 33, 33, 1);
+  cursor: pointer;
+}
+
+.modal_cancel:hover {
+  background-color: rgba(33, 33, 33, 1);
+  color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(33, 33, 33, 1);
+  box-sizing: 1px;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .modal__input {
@@ -164,15 +231,13 @@
   font-weight: 500;
 }
 
-
 @media screen and (max-width: 627px) {
-.modal__close-button_type_preview {
-  top: 10px;
-  right: -1px;
-  padding: 0;
+  .modal__close-button_type_preview {
+    top: 10px;
+    right: -1px;
+    padding: 0;
   }
 }
-
 
 @media screen and (max-width: 480px) {
   .modal__container {
@@ -188,7 +253,7 @@
     margin: 10px 0 34px;
   }
 
-  .modal__close-button{
+  .modal__close-button {
     top: 12px;
     right: 12px;
   }
