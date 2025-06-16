@@ -56,7 +56,7 @@
       <div class="modal" id="edit-profile-modal">
         <div class="modal__container">
           <button type="button" class="modal__close-button">
-            <img alt="X icon" class="edit__profile-x-icon" />
+            <img src="#" alt="" class="edit__profile-x-icon" />
           </button>
           <h2 class="modal__title">Edit Profile</h2>
           <form class="modal__form" id="edit.profile" novalidate>
@@ -96,7 +96,7 @@
       <div class="modal" id="add-card-modal">
         <div class="modal__container">
           <button type="button" class="modal__close-button">
-            <img alt="X icon" class="new__post-x-icon" />
+            <img src="#" alt="" class="new__post-x-icon" />
           </button>
           <h2 class="modal__title">New Post</h2>
           <form class="modal__form" id="add-card-form">
@@ -142,22 +142,22 @@
     <div class="modal" id="edit-avatar-modal">
       <div class="modal__container">
         <button type="button" class="modal__close-button">
-          <img alt="X icon" class="edit__profile-x-icon" />
+          <img src="#" alt="" class="edit__avatar-x-icon" />
         </button>
-        <h3 class="modal__title">Edit Avatar</h3>
+        <h3 class="modal__title">Edit profile avatar</h3>
         <form class="modal__form" id="edit-avatar-form">
           <label for="profile-avatar-input" class="modal__label">
-            Avatar
+            Profile Picture
             <input
               id="profile-avatar-input"
+              type="url"
               class="modal__input"
               name="avatar"
-              placeholder="Avatar goes here"
+              placeholder="Paste the link to an image"
               required
             />
             <span id="profile-avatar-input-error" class="modal__error"></span>
           </label>
-
           <button type="submit" class="modal__submit-button">Save</button>
         </form>
         </div>
