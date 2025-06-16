@@ -18,7 +18,12 @@
       </header>
       <main class="content">
         <section class="profile page__section">
+          <div class="profile__avatar-container">
+          <button class="profile__avatar-btn">
+            <img src="<%=require('./images/pencil-light.svg')%>" alt="Pencil icon">
+          </button>
           <img alt="Bessie Coleman" class="profile__avatar" />
+        </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -133,6 +138,29 @@
           <p class="modal__caption"></p>
         </div>
       </div>
-    </div>
+
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close-button">
+          <img alt="X icon" class="edit__profile-x-icon" />
+        </button>
+        <h3 class="modal__title">Edit Avatar</h3>
+        <form class="modal__form" id="edit-avatar-form">
+          <label for="profile-avatar-input" class="modal__label">
+            Avatar
+            <input
+              id="profile-avatar-input"
+              class="modal__input"
+              name="avatar"
+              placeholder="Avatar goes here"
+              required
+            />
+            <span id="profile-avatar-input-error" class="modal__error"></span>
+          </label>
+
+          <button type="submit" class="modal__submit-button">Save</button>
+        </form>
+        </div>
+      </div>
   </body>
 </html>
