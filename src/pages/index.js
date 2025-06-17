@@ -111,7 +111,9 @@ function handleOverlayClick(evt) {
 }
 
 // ===================== CARD CREATION FUNCTION =====================
-let cardToDelete = null; // Declare this globally
+//sjdfdsnhfab
+let selectedCard;
+let selectedCardId;
 
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -126,14 +128,51 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
-  cardLikeBtnEl.addEventListener("click", () => {
-    cardLikeBtnEl.classList.toggle("card__like-button_active");
-  });
 
-  // ✅ Assign the card to be deleted
+  // changeLikeStatus****
+  cardLikeBtnEl.addEventListener("click", (evt) =>
+    changeLikeStatus(evt, data._id)
+  );
+
+  function changeLikeStatus(evt, id) {
+    const likeBtn = evt.target;
+    const isLiked = likeBtn.classList.contains("card__like-button_active");
+
+    api
+    api
+      .changeLikeStatus(id, isLiked)
+      .then(() => {
+        likeBtn.classList.toggle("card__like-button_active");
+      })
+      .catch(console.error);
+  }
+
+
+
+  // cardLikeBtnEl.addEventListener("click", () => {
+  //   const isLiked = cardLikeBtnEl.classList.contains(
+  //     "card__like-button_active"
+  //   );
+  //   const apiMethod = isLiked ? api.removeLike : api.addLike;
+
+  //   apiMethod
+  //     .call(api, data._id)
+  //     .then((updatedCard) => {
+  //       cardLikeBtnEl.classList.toggle("card__like-button_active");
+  //       // Optional: update a like counter here if you implement one
+  //     })
+  //     .catch(console.error);
+  // });
+
+
+
+
+
+
+  //handle delete card*
+  //assign the card to be deleted
   cardDeleteBtnEl.addEventListener("click", () => {
-    cardToDelete = cardElement;
-    handleDeleteCard();
+    handleDeleteCard(cardElement, data);
   });
 
   cardImageEl.addEventListener("click", () => {
@@ -186,15 +225,22 @@ addCardFormEl.addEventListener("submit", (e) => {
   const titleInput = addCardFormEl.querySelector("#card-title-input");
   const urlInput = addCardFormEl.querySelector("#card-url-input");
 
-  const newCard = getCardElement({
-    name: titleInput.value,
-    link: urlInput.value,
-  });
-
-  cardsListEl.prepend(newCard);
-  closeModal(addCardModal);
-  addCardFormEl.reset();
-  disableButton(addCardSubmitButton, validationConfig);
+  // Send request to server
+  api
+    .addCard({
+      name: titleInput.value,
+      link: urlInput.value,
+    })
+    .then((cardData) => {
+      const newCard = getCardElement(cardData);
+      cardsListEl.prepend(newCard);
+      closeModal(addCardModal);
+      addCardFormEl.reset();
+      disableButton(addCardSubmitButton, validationConfig);
+    })
+    .catch((err) => {
+      console.error("Failed to add card:", err);
+    });
 });
 
 function handleAvatarSubmit(e) {
@@ -217,7 +263,11 @@ const deleteModalCloseBtn = deleteModal.querySelector(
 const deleteConfirmBtn = deleteModal.querySelector(".modal_delete");
 const deleteCancelBtn = deleteModal.querySelector(".modal_cancel");
 
-function handleDeleteCard() {
+
+//handle delete card*
+function handleDeleteCard(cardElement, data) {
+  selectedCard = cardElement;
+  selectedCardId = data._id; // Ensure the card object includes `_id` from API
   openModal(deleteModal);
 }
 
@@ -227,16 +277,28 @@ deleteModalCloseBtn.addEventListener("click", () => closeModal(deleteModal));
 
 deleteCancelBtn.addEventListener("click", () => {
   closeModal(deleteModal);
-  cardToDelete = null;
+  selectedCard = null; // reset the selected card
+  selectedCardId = null; // reset the selected card ID
 });
 
-deleteConfirmBtn.addEventListener("click", () => {
-  if (cardToDelete) {
-    cardToDelete.remove();
-    cardToDelete = null;
-  }
-  closeModal(deleteModal);
-});
+// handle delete card*
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  if (!selectedCardId || !selectedCard) return;
+
+  api
+    .deleteCard(selectedCardId)
+    .then(() => {
+      selectedCard.remove();
+      closeModal(deleteModal);
+      selectedCard = null;
+      selectedCardId = null;
+    })
+    .catch(console.error);
+}
+
+const deleteForm = document.querySelector("#delete-form");
+deleteForm.addEventListener("submit", handleDeleteSubmit);
 
 // Edit Avatar
 
