@@ -111,7 +111,6 @@ function handleOverlayClick(evt) {
 }
 
 // ===================== CARD CREATION FUNCTION =====================
-//sjdfdsnhfab
 let selectedCard;
 let selectedCardId;
 
@@ -128,49 +127,13 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
-
-  // changeLikeStatus****
+  if (data.isLiked) {
+    cardLikeBtnEl.classList.add("card__like-button_active");
+  }
   cardLikeBtnEl.addEventListener("click", (evt) =>
     changeLikeStatus(evt, data._id)
   );
 
-  function changeLikeStatus(evt, id) {
-    const likeBtn = evt.target;
-    const isLiked = likeBtn.classList.contains("card__like-button_active");
-
-    api
-    api
-      .changeLikeStatus(id, isLiked)
-      .then(() => {
-        likeBtn.classList.toggle("card__like-button_active");
-      })
-      .catch(console.error);
-  }
-
-
-
-  // cardLikeBtnEl.addEventListener("click", () => {
-  //   const isLiked = cardLikeBtnEl.classList.contains(
-  //     "card__like-button_active"
-  //   );
-  //   const apiMethod = isLiked ? api.removeLike : api.addLike;
-
-  //   apiMethod
-  //     .call(api, data._id)
-  //     .then((updatedCard) => {
-  //       cardLikeBtnEl.classList.toggle("card__like-button_active");
-  //       // Optional: update a like counter here if you implement one
-  //     })
-  //     .catch(console.error);
-  // });
-
-
-
-
-
-
-  //handle delete card*
-  //assign the card to be deleted
   cardDeleteBtnEl.addEventListener("click", () => {
     handleDeleteCard(cardElement, data);
   });
@@ -185,8 +148,25 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function changeLikeStatus(evt, id) {
+  const likeBtn = evt.target;
+  const isLiked = likeBtn.classList.contains("card__like-button_active");
+
+  api
+    .changeLikeStatus(id, isLiked)
+    .then((updatedCard) => {
+      // Toggle class based on updatedCard.isLiked
+      if (updatedCard.isLiked) {
+        likeBtn.classList.add("card__like-button_active");
+      } else {
+        likeBtn.classList.remove("card__like-button_active");
+      }
+    })
+    .catch(console.error);
+}
+
+
 // ===================== EVENT LISTENERS =====================
-// Edit Profile
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
@@ -263,7 +243,6 @@ const deleteModalCloseBtn = deleteModal.querySelector(
 const deleteConfirmBtn = deleteModal.querySelector(".modal_delete");
 const deleteCancelBtn = deleteModal.querySelector(".modal_cancel");
 
-
 //handle delete card*
 function handleDeleteCard(cardElement, data) {
   selectedCard = cardElement;
@@ -272,8 +251,6 @@ function handleDeleteCard(cardElement, data) {
 }
 
 deleteModalCloseBtn.addEventListener("click", () => closeModal(deleteModal));
-
-
 
 deleteCancelBtn.addEventListener("click", () => {
   closeModal(deleteModal);
@@ -312,14 +289,15 @@ avatarModalCloseBtn.addEventListener("click", () =>
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
-
 // Preview Modal
 previewModalCloseBtn.addEventListener("click", () => closeModal(previewModal));
 
 // Overlay Close
-[editModal, addCardModal, previewModal, editAvatarModal, deleteModal].forEach((modal) => {
-  modal.addEventListener("click", handleOverlayClick);
-});
+[editModal, addCardModal, previewModal, editAvatarModal, deleteModal].forEach(
+  (modal) => {
+    modal.addEventListener("click", handleOverlayClick);
+  }
+);
 
 // Escape Key Close
 document.addEventListener("keydown", (evt) => {
