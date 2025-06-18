@@ -26,9 +26,10 @@ const api = new Api({
   },
 });
 
-// ===================== IMAGE ELEMENT SETUP =====================
-document.querySelector(".header__logo").src = logoImage;
+// ===================== ELEMENT SETUP =====================
+// Header / Profile
 const avatarElement = document.querySelector(".profile__avatar");
+document.querySelector(".header__logo").src = logoImage;
 avatarElement.src = avatarImage;
 document.querySelector(".profile__icon").src = editImage;
 document.querySelector(".add__icon").src = addImage;
@@ -36,7 +37,6 @@ document.querySelector(".edit__profile-x-icon").src = closeImage;
 document.querySelector(".new__post-x-icon").src = xImage;
 document.querySelector(".edit__avatar-x-icon").src = closeImage;
 document.querySelector(".modal__delete-x-icon").src = deleteCloseImage;
-console.log("Delete close image:", deleteCloseImage);
 
 // ===================== PROFILE ELEMENTS =====================
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -44,7 +44,8 @@ const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const profileAvatarBtn = document.querySelector(".profile__avatar-btn");
 
-// ===================== EDIT PROFILE MODAL =====================
+// ===================== MODALS =====================
+// Edit Profile
 const editModal = document.querySelector("#edit-profile-modal");
 const editFormElement = editModal.querySelector(".modal__form");
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
@@ -53,33 +54,40 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
-// ===================== AVATAR MODAL ELEMENTS =====================
+// Edit Avatar
 const editAvatarModal = document.querySelector("#edit-avatar-modal");
 const avatarForm = editAvatarModal.querySelector(".modal__form");
-const avatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-button");
 const avatarModalCloseBtn = editAvatarModal.querySelector(
   ".modal__close-button"
 );
 const avatarInput = editAvatarModal.querySelector("#profile-avatar-input");
 
-// ===================== ADD CARD MODAL ELEMENTS =====================
+// Add Card
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardFormEl = document.querySelector("#add-card-form");
 const profileAddButton = document.querySelector(".profile__add-btn");
 const addCardSubmitButton = addCardModal.querySelector(".modal__submit-button");
 
-// ===================== CARD ELEMENTS =====================
-const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector(".cards__list");
-const cardsListEl = document.querySelector(".cards__list");
+// Delete Card
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(
+  ".modal__close-button-delete"
+);
+const deleteConfirmBtn = deleteModal.querySelector(".modal_delete");
+const deleteCancelBtn = deleteModal.querySelector(".modal_cancel");
+const deleteForm = document.querySelector("#delete-form");
 
-// ===================== PREVIEW MODAL ELEMENTS =====================
+// Preview Image
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(
   ".modal__close-button_type_preview"
 );
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaptionEl = previewModal.querySelector(".modal__caption");
+
+// ===================== CARD ELEMENTS =====================
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
 
 // ===================== API: LOAD INITIAL DATA =====================
 api
@@ -110,7 +118,7 @@ function handleOverlayClick(e) {
   }
 }
 
-// ===================== CARD CREATION FUNCTION =====================
+// ===================== CARD FUNCTIONS =====================
 let selectedCard;
 let selectedCardId;
 
@@ -130,9 +138,7 @@ function getCardElement(data) {
   if (data.isLiked) {
     cardLikeBtnEl.classList.add("card__like-button_active");
   }
-  cardLikeBtnEl.addEventListener("click", (e) =>
-    changeLikeStatus(e, data._id)
-  );
+  cardLikeBtnEl.addEventListener("click", (e) => changeLikeStatus(e, data._id));
 
   cardDeleteBtnEl.addEventListener("click", () => {
     handleDeleteCard(cardElement, data);
@@ -155,7 +161,6 @@ function changeLikeStatus(e, id) {
   api
     .changeLikeStatus(id, isLiked)
     .then((updatedCard) => {
-      // Toggle class based on updatedCard.isLiked
       if (updatedCard.isLiked) {
         likeBtn.classList.add("card__like-button_active");
       } else {
@@ -165,14 +170,13 @@ function changeLikeStatus(e, id) {
     .catch(console.error);
 }
 
+function handleDeleteCard(cardElement, data) {
+  selectedCard = cardElement;
+  selectedCardId = data._id;
+  openModal(deleteModal);
+}
 
-// ===================== EVENT LISTENERS =====================
-profileEditButton.addEventListener("click", () => {
-  editModalNameInput.value = profileName.textContent;
-  editModalDescriptionInput.value = profileDescription.textContent;
-  resetValidation(editFormElement, validationConfig);
-  openModal(editModal);
-});
+// ===================== FORM SUBMISSION =====================
 editFormElement.addEventListener("submit", (e) => {
   e.preventDefault();
   const button = e.submitter;
@@ -195,47 +199,36 @@ editFormElement.addEventListener("submit", (e) => {
     });
 });
 
-editModalCloseButton.addEventListener("click", () => closeModal(editModal));
+addCardFormEl.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const button = e.submitter;
+  const originalText = button.textContent;
+  button.textContent = "Saving...";
 
-// Add Card
-profileAddButton.addEventListener("click", () => openModal(addCardModal));
+  const titleInput = addCardFormEl.querySelector("#card-title-input");
+  const urlInput = addCardFormEl.querySelector("#card-url-input");
 
-addCardModal
-  .querySelector(".modal__close-button")
-  .addEventListener("click", () => {
-    closeModal(addCardModal);
-  });
+  api
+    .addCard({
+      name: titleInput.value,
+      link: urlInput.value,
+    })
+    .then((cardData) => {
+      const newCard = getCardElement(cardData);
+      cardsList.prepend(newCard);
+      closeModal(addCardModal);
+      addCardFormEl.reset();
+      disableButton(button, validationConfig);
+    })
+    .catch((err) => {
+      console.error("Failed to add card:", err);
+    })
+    .finally(() => {
+      button.textContent = originalText;
+    });
+});
 
-  addCardFormEl.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const button = e.submitter;
-    const originalText = button.textContent;
-    button.textContent = "Saving...";
-
-    const titleInput = addCardFormEl.querySelector("#card-title-input");
-    const urlInput = addCardFormEl.querySelector("#card-url-input");
-
-    api
-      .addCard({
-        name: titleInput.value,
-        link: urlInput.value,
-      })
-      .then((cardData) => {
-        const newCard = getCardElement(cardData);
-        cardsListEl.prepend(newCard);
-        closeModal(addCardModal);
-        addCardFormEl.reset();
-        disableButton(button, validationConfig);
-      })
-      .catch((err) => {
-        console.error("Failed to add card:", err);
-      })
-      .finally(() => {
-        button.textContent = originalText;
-      });
-  });
-
-function handleAvatarSubmit(e) {
+avatarForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const button = e.submitter;
   const originalText = button.textContent;
@@ -252,31 +245,9 @@ function handleAvatarSubmit(e) {
     .finally(() => {
       button.textContent = originalText;
     });
-}
-const deleteModal = document.querySelector("#delete-modal");
-const deleteModalCloseBtn = deleteModal.querySelector(
-  ".modal__close-button-delete"
-);
-const deleteConfirmBtn = deleteModal.querySelector(".modal_delete");
-const deleteCancelBtn = deleteModal.querySelector(".modal_cancel");
-
-//handle delete card*
-function handleDeleteCard(cardElement, data) {
-  selectedCard = cardElement;
-  selectedCardId = data._id; // Ensure the card object includes `_id` from API
-  openModal(deleteModal);
-}
-
-deleteModalCloseBtn.addEventListener("click", () => closeModal(deleteModal));
-
-deleteCancelBtn.addEventListener("click", () => {
-  closeModal(deleteModal);
-  selectedCard = null; // reset the selected card
-  selectedCardId = null; // reset the selected card ID
 });
 
-// handle delete card*
-function handleDeleteSubmit(e) {
+deleteForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!selectedCardId || !selectedCard) return;
 
@@ -296,34 +267,41 @@ function handleDeleteSubmit(e) {
     .finally(() => {
       button.textContent = originalText;
     });
-}
+});
 
-const deleteForm = document.querySelector("#delete-form");
-deleteForm.addEventListener("submit", handleDeleteSubmit);
+// ===================== MODAL EVENT LISTENERS =====================
+profileEditButton.addEventListener("click", () => {
+  editModalNameInput.value = profileName.textContent;
+  editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(editFormElement, validationConfig);
+  openModal(editModal);
+});
 
-// Edit Avatar
+profileAddButton.addEventListener("click", () => openModal(addCardModal));
 
 profileAvatarBtn.addEventListener("click", () => {
   openModal(editAvatarModal);
   resetValidation(avatarForm, validationConfig);
 });
+
+editModalCloseButton.addEventListener("click", () => closeModal(editModal));
 avatarModalCloseBtn.addEventListener("click", () =>
   closeModal(editAvatarModal)
 );
-
-avatarForm.addEventListener("submit", handleAvatarSubmit);
-
-// Preview Modal
+deleteModalCloseBtn.addEventListener("click", () => closeModal(deleteModal));
+deleteCancelBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+  selectedCard = null;
+  selectedCardId = null;
+});
 previewModalCloseBtn.addEventListener("click", () => closeModal(previewModal));
 
-// Overlay Close
 [editModal, addCardModal, previewModal, editAvatarModal, deleteModal].forEach(
   (modal) => {
     modal.addEventListener("click", handleOverlayClick);
   }
 );
 
-// Escape Key Close
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     document.querySelectorAll(".modal_opened").forEach(closeModal);
