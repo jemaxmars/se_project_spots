@@ -66,14 +66,13 @@ const avatarInput = editAvatarModal.querySelector("#profile-avatar-input");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardFormEl = document.querySelector("#add-card-form");
 const profileAddButton = document.querySelector(".profile__add-btn");
-const addCardSubmitButton = addCardModal.querySelector(".modal__submit-button");
+const newPostCloseButton = document.querySelector(".new__post-x-icon");
 
 // Delete Card
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseBtn = deleteModal.querySelector(
   ".modal__close-button-delete"
 );
-const deleteConfirmBtn = deleteModal.querySelector(".modal_delete");
 const deleteCancelBtn = deleteModal.querySelector(".modal_cancel");
 const deleteForm = document.querySelector("#delete-form");
 
@@ -295,6 +294,8 @@ deleteCancelBtn.addEventListener("click", () => {
   selectedCardId = null;
 });
 previewModalCloseBtn.addEventListener("click", () => closeModal(previewModal));
+
+newPostCloseButton.addEventListener("click", () => closeModal(addCardModal));
 
 [editModal, addCardModal, previewModal, editAvatarModal, deleteModal].forEach(
   (modal) => {
