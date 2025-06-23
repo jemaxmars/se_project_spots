@@ -92,6 +92,7 @@
   opacity: 100%;
   min-width: 40px;
   max-height: 40px;
+  position: absolute;
 }
 
 .modal__close-button:hover {
@@ -266,7 +267,13 @@
     right: 12px;
   }
 
-  .modal__close-btn_type_preview {
+  .modal__close-button-delete {
+    display: block;
+    right: 6px;
+    top: -45px;
+  }
+
+  .modal__close-button_type_preview {
     top: -22px;
   }
 
