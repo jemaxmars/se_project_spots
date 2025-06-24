@@ -114,12 +114,12 @@ function handleEscape(evt) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscape); //
+  document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscape); //
+  document.removeEventListener("keydown", handleEscape);
 }
 
 function handleOverlayClick(e) {
@@ -186,99 +186,88 @@ function handleDeleteCard(cardElement, data) {
   openModal(deleteModal);
 }
 
-// ===================== FORM SUBMISSION =====================
-editFormElement.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const button = e.submitter;
-  const originalText = button.textContent;
-  button.textContent = "Saving...";
+function renderLoading(
+  isLoading,
+  button,
+  buttonText = "Save",
+  loadingText = "Saving..."
+) {
+  button.textContent = isLoading ? loadingText : buttonText;
+}
 
-  api
-    .editUserInfo({
-      name: editModalNameInput.value,
-      about: editModalDescriptionInput.value,
-    })
-    .then((data) => {
-      profileName.textContent = data.name;
-      profileDescription.textContent = data.about;
-      closeModal(editModal);
+function handleSubmit(request, evt, loadingText = "Saving...") {
+  evt.preventDefault();
+  const submitButton = evt.submitter;
+  const initialText = submitButton.textContent;
+  renderLoading(true, submitButton, initialText, loadingText);
+
+  request()
+    .then(() => {
+      evt.target.reset();
     })
     .catch(console.error)
     .finally(() => {
-      button.textContent = originalText;
+      renderLoading(false, submitButton, initialText);
     });
-});
+}
 
-addCardFormEl.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const button = e.submitter;
-  const originalText = button.textContent;
-  button.textContent = "Saving...";
+// ===================== FORM SUBMISSION =====================
+editFormElement.addEventListener("submit", (e) =>
+  handleSubmit(() => {
+    return api
+      .editUserInfo({
+        name: editModalNameInput.value,
+        about: editModalDescriptionInput.value,
+      })
+      .then((data) => {
+        profileName.textContent = data.name;
+        profileDescription.textContent = data.about;
+        closeModal(editModal);
+      });
+  }, e)
+);
 
-  const titleInput = addCardFormEl.querySelector("#card-title-input");
-  const urlInput = addCardFormEl.querySelector("#card-url-input");
+addCardFormEl.addEventListener("submit", (e) =>
+  handleSubmit(() => {
+    const titleInput = addCardFormEl.querySelector("#card-title-input");
+    const urlInput = addCardFormEl.querySelector("#card-url-input");
 
-  api
-    .addCard({
-      name: titleInput.value,
-      link: urlInput.value,
-    })
-    .then((cardData) => {
-      const newCard = getCardElement(cardData);
-      cardsList.prepend(newCard);
-      closeModal(addCardModal);
-      addCardFormEl.reset();
-      disableButton(button, validationConfig);
-    })
-    .catch((err) => {
-      console.error("Failed to add card:", err);
-    })
-    .finally(() => {
-      button.textContent = originalText;
-    });
-});
+    return api
+      .addCard({ name: titleInput.value, link: urlInput.value })
+      .then((cardData) => {
+        const newCard = getCardElement(cardData);
+        cardsList.prepend(newCard);
+        closeModal(addCardModal);
+        disableButton(e.submitter, validationConfig);
+      });
+  }, e)
+);
 
-avatarForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const button = e.submitter;
-  const originalText = button.textContent;
-  button.textContent = "Saving...";
-
-  api
-    .editProfileAvatar({ avatar: avatarInput.value })
-    .then((data) => {
+avatarForm.addEventListener("submit", (e) =>
+  handleSubmit(() => {
+    return api.editProfileAvatar({ avatar: avatarInput.value }).then((data) => {
       avatarElement.src = data.avatar;
       closeModal(editAvatarModal);
-      avatarForm.reset();
-    })
-    .catch(console.error)
-    .finally(() => {
-      button.textContent = originalText;
     });
-});
+  }, e)
+);
 
-deleteForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (!selectedCardId || !selectedCard) return;
+deleteForm.addEventListener("submit", (e) =>
+  handleSubmit(
+    () => {
+      if (!selectedCardId || !selectedCard) return Promise.resolve();
 
-  const button = e.submitter;
-  const originalText = button.textContent;
-  button.textContent = "Deleting...";
-
-  api
-    .deleteCard(selectedCardId)
-    .then(() => {
-      selectedCard.remove();
-      closeModal(deleteModal);
-      selectedCard = null;
-      selectedCardId = null;
-    })
-    .catch(console.error)
-    .finally(() => {
-      button.textContent = originalText;
-    });
-});
-
+      return api.deleteCard(selectedCardId).then(() => {
+        selectedCard.remove();
+        closeModal(deleteModal);
+        selectedCard = null;
+        selectedCardId = null;
+      });
+    },
+    e,
+    "Deleting..."
+  )
+);
 // ===================== MODAL EVENT LISTENERS =====================
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
