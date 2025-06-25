@@ -4,11 +4,13 @@ This project is an image sharing site.
 
 ## Description
 
-This is a responsive web application developed as part of the TripleTen Software Engineering Program. The project was completed over the course of several sprints and showcases the evolution of my front-end development skills.
+This is a responsive web application developed as part of the TripleTen Software Engineering Program. It represents my first fully responsive site, designed with both desktop and mobile users in mind. This project marks a key milestone in my development journey, where I applied core front-end principles to create a fluid, accessible layout across device types. Completed over the course of several sprints, it showcases the growth and evolution of my front-end development skills.
 
-Initially, I focused on building a responsive layout optimized for both desktop and mobile devices using semantic HTML and modern CSS techniques. I utilized Figma to design and plan a consistent, user-friendly interface.
+Initially, I focused on building a responsive layout using semantic HTML and modern CSS techniques. I utilized Figma to design and plan a consistent, user-friendly interface that adapts well to various screen sizes.
 
-In later stages, I integrated JavaScript to enhance interactivity, and ultimately refactored the project using Object-Oriented Programming (OOP) principles. I also incorporated asynchronous JavaScript and external APIs to support dynamic data rendering and interaction.
+In later stages, I integrated JavaScript to enhance interactivity and refactored the code using Object-Oriented Programming (OOP) principles. I also implemented asynchronous JavaScript and connected to external APIs to support dynamic data rendering and user interaction.
+
+Additionally, I configured a custom Webpack build setup to bundle and optimize project assets, manage development workflows, and support a modular, scalable code architecture.
 
 ## Tech Stack
 
