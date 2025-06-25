@@ -7,6 +7,7 @@ import {
   disableButton,
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
+import { handleSubmit } from "../utils/formUtils.js";
 
 // ===================== IMAGES =====================
 import logoImage from "../images/logo.svg";
@@ -184,31 +185,6 @@ function handleDeleteCard(cardElement, data) {
   selectedCard = cardElement;
   selectedCardId = data._id;
   openModal(deleteModal);
-}
-
-function renderLoading(
-  isLoading,
-  button,
-  buttonText = "Save",
-  loadingText = "Saving..."
-) {
-  button.textContent = isLoading ? loadingText : buttonText;
-}
-
-function handleSubmit(request, evt, loadingText = "Saving...") {
-  evt.preventDefault();
-  const submitButton = evt.submitter;
-  const initialText = submitButton.textContent;
-  renderLoading(true, submitButton, initialText, loadingText);
-
-  request()
-    .then(() => {
-      evt.target.reset();
-    })
-    .catch(console.error)
-    .finally(() => {
-      renderLoading(false, submitButton, initialText);
-    });
 }
 
 // ===================== FORM SUBMISSION =====================
