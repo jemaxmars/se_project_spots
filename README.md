@@ -4,15 +4,27 @@ This project is an image sharing site.
 
 ## Description
 
-This is a webpage that I created for Triple Ten's software engineering program. I worked on this project for multiple sprints. It is the first responsive site that I created, for both desktop and mobile viewing. I used Figma to implement a cohesive "game plan" for how I was going to design the layout of the webpage. I used VS Code to create and edit the necessary HTML & CSS files for this project in the first sprint that I worked on this project. In the later sprints, I used JavaScript, OOP and asynchronous JavaScript and APIs.
+This is a responsive web application developed as part of the TripleTen Software Engineering Program. The project was completed over the course of several sprints and showcases the evolution of my front-end development skills.
+
+Initially, I focused on building a responsive layout optimized for both desktop and mobile devices using semantic HTML and modern CSS techniques. I utilized Figma to design and plan a consistent, user-friendly interface.
+
+In later stages, I integrated JavaScript to enhance interactivity, and ultimately refactored the project using Object-Oriented Programming (OOP) principles. I also incorporated asynchronous JavaScript and external APIs to support dynamic data rendering and interaction.
 
 ## Tech Stack
 
-- HTML
-- CSS
-- FIGMA
-- RESPONSIVE DESIGN
-- JavaScript
+- HTML5, CSS3
+
+- Responsive design with media queries
+
+- JavaScript (ES6+)
+
+- Object-Oriented Programming
+
+- Asynchronous programming (Promises, Fetch API)
+
+- Visual Studio Code (VS Code)
+
+- Figma for UI/UX planning
 
 ## Deployment
 
